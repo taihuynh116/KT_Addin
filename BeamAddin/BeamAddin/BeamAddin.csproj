@@ -70,12 +70,26 @@
     <Compile Include="WPF\InputForm.xaml.cs">
       <DependentUpon>InputForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\Property\Button\CancelClicked.cs" />
+    <Compile Include="WPF\Property\Button\OKClicked.cs" />
+    <Compile Include="WPF\Property\Button\DeleteBeamInputClicked.cs" />
+    <Compile Include="WPF\Property\Button\AddBeamInputClicked.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="WPF\InputForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\add.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,6 +21,9 @@
         <Style x:Key="TypeBottomLayerWidth">
             <Setter Property="Control.Width" Value="90"/>
         </Style>
+        <Style x:Key="Button">
+            <Setter Property="Control.Width" Value="50"/>
+        </Style>
     </Window.Resources>
     <StackPanel Margin="10">
         <StackPanel Orientation="Horizontal">
@@ -33,15 +36,39 @@
             <Label Content="Num BotLayer" Style="{StaticResource ResourceKey=NumberBottomLayerWidth}"/>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
             <Label Content="Type BotLayer" Style="{StaticResource ResourceKey=TypeBottomLayerWidth}"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+            <Button Width="20" Height="20" VerticalAlignment="Center"
+                    local:BaseAttachedProperty.AddBeamInputClickedProperty="True">
+                <Image Margin="1" Source="/BeamAddin;component/Resources/add.png"/>
+            </Button>
         </StackPanel>
-        <ListView>
+        <ListView ItemsSource="{Binding BeamInputs}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="0 10 10 0">
-                        <TextBox Text=""/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Style="{StaticResource ResourceKey=NameWidth}" Text="{Binding Name}"/>
+                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        <TextBox Style="{StaticResource ResourceKey=NumberTopLayerWidth}" Text="{Binding TopNumber}"/>
+                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        <ComboBox Style="{StaticResource ResourceKey=TypeTopLayerWidth}" ItemsSource="{Binding RebarTypes}" DisplayMemberPath="Name" SelectedItem="{Binding TopBarType}"/>
+                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        <TextBox Style="{StaticResource ResourceKey=NumberBottomLayerWidth}" Text="{Binding BotNumber}"/>
+                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        <ComboBox Style="{StaticResource ResourceKey=TypeBottomLayerWidth}" ItemsSource="{Binding RebarTypes}" DisplayMemberPath="Name" SelectedItem="{Binding BottomBarType}"/>
+                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        <Button Width="20" Height="20" VerticalAlignment="Center"
+                                local:BaseAttachedProperty.DeleteBeamInputClickedProperty="True">
+                            <Image Margin="1" Source="/BeamAddin;component/Resources/minus.png"/>
+                        </Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Cancel" Style="{StaticResource ResourceKey=Button}" Margin="0 0 10 0"
+                    local:BaseAttachedProperty.CancelClickedProperty="True"/>
+            <Button Content="OK" Style="{StaticResource ResourceKey=Button}"
+                    local:BaseAttachedProperty.OKClickedProperty="True"/>
+        </StackPanel>
     </StackPanel>
 </Window>

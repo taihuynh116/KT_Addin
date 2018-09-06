@@ -3,6 +3,7 @@ using Autodesk.Revit.UI;
 using BeamAddin;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -15,11 +16,8 @@ namespace Single
     {
         #region Variables
         private InputForm inputForm;
-        private double nameWidth = 50;
-        private double numTopLayWidth = 50;
-        private double typeTopLayWidth = 50;
-        private double numBotLayWidth = 50;
-        private double typeBotLayWidth = 50;
+        private ObservableCollection<BeamInput> beamInputs;
+        private bool isClosedOK;
         #endregion
 
         #region Properties
@@ -31,39 +29,29 @@ namespace Single
                 return inputForm;
             }
         }
-        public double NameWidth
+        public ObservableCollection<BeamInput> BeamInputs
         {
             get
             {
-                return nameWidth;
+                if (beamInputs == null) beamInputs = new ObservableCollection<BeamInput>();
+                return beamInputs;
+            }
+            set
+            {
+                beamInputs = value;
+                OnPropertyChanged();
             }
         }
-        public double NumberTopLayerWidth
+        public bool IsClosedOK
         {
             get
             {
-                return numTopLayWidth;
+                return isClosedOK;
             }
-        }
-        public double TypeTopLayerWidth
-        {
-            get
+            set
             {
-                return typeTopLayWidth;
-            }
-        }
-        public double NumberBottomLayerWidth
-        {
-            get
-            {
-                return numBotLayWidth;
-            }
-        }
-        public double TypeBottomLayerWidth
-        {
-            get
-            {
-                return typeBotLayWidth;
+                if (isClosedOK == value) return;
+                isClosedOK = value;
             }
         }
         #endregion

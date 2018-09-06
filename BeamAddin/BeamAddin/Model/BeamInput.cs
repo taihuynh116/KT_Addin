@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB.Structure;
+using Single;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,12 @@ namespace BeamAddin
         public RebarBarType TopBarType { get; set; }
         public int BottomNumber { get; set; }
         public RebarBarType BottomBarType { get; set; }
+        public List<RebarBarType> RebarTypes
+        {
+            get
+            {
+                return Singleton.Instance.RevitData.RebarTypes;
+            }
+        }
     }
 }
