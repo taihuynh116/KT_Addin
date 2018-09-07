@@ -28,6 +28,8 @@ namespace Single
         private List<RebarBarType> rebarTypes;
         private List<Category> categories;
         private List<TextNoteType> textNoteTypes;
+        private List<Level> levels;
+        private List<WallType> wallTypes;
         #endregion
 
         #region Properties
@@ -157,6 +159,22 @@ namespace Single
             {
                 if (textNoteTypes == null) textNoteTypes = TypeElements.Where(x => x is TextNoteType).Cast<TextNoteType>().ToList();
                 return textNoteTypes;
+            }
+        }
+        public List<Level> Levels
+        {
+            get
+            {
+                if (levels == null) levels = InstanceElements.Where(x => x is Level).Cast<Level>().ToList();
+                return levels;
+            }
+        }
+        public List<WallType> WallTypes
+        {
+            get
+            {
+                if (wallTypes == null) wallTypes = TypeElements.Where(x => x is WallType).Cast<WallType>().ToList();
+                return wallTypes;
             }
         }
         #endregion
